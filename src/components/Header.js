@@ -92,7 +92,7 @@ export default function Header() {
           </div>
         </nav>
       </header>
-      {showPopup && <ContactPopup onClose={() => setShowPopup(false)} />}
+      {/* {showPopup && <ContactPopup onClose={() => setShowPopup(false)} />} */}
     </>
   );
 }
