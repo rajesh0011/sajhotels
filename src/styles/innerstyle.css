@@ -1,0 +1,12 @@
+p{
+    font-size: .9rem!important;
+}
+.text-justify{
+    text-align: justify;
+}
+.contact_Address,
+.contact_Address a{
+    font-size: 14px;
+    color: #000;
+    line-height: inherit;
+}

@@ -1,17 +1,17 @@
 
 .home-page-class .header_booking_engine{ bottom:0px;}
-.header_booking_engine .btn{ width:150px;}
+.header_booking_engine .btn{ width:160px;}
 
 /* book now css */
 .header_booking_engine {
 width: 95%;
 /* bottom: -48px; */
-background: #f5f5dc;
+background: #000;
 /* z-index: 99999; */
 margin: auto;
 position: relative;
-padding: 26px;
-padding-bottom:40px;
+padding: 16px;
+padding-bottom:20px;
 }
 
 .react-datepicker-wrapper {
@@ -22,7 +22,7 @@ padding-bottom:40px;
 }
 .calendar-icon {
     position: relative;
-    color: #000;
+    color: #fff;
     width: 100% !important;
     display: block;
 }
@@ -34,7 +34,7 @@ padding-bottom:40px;
 .css-hlgwow{ font-size:14px;}
 .header_booking_engine .col, select{ width:21%;}
 .header_booking_engine .col label{     
-    color: #000000;
+    color: #fff;
     font-size: 12px;
     font-weight: 600;}
 .header_booking_engine .col .form-control {
@@ -42,11 +42,16 @@ padding-bottom:40px;
     font-size: 13px;
     font-weight: bold;
     padding-left: 5px !important;
+    border-radius: 0;
+}
+.css-b62m3t-container {
+  min-height: 32px;
+    border-radius: 0;
 }
 .header_booking_engine .col{ width:15% !important;}
 .header_booking_engine input, .header_booking_engine select, 
-.header_booking_engine .form-control:disabled{ border:1px solid #b79e78; border-radius:4px; 
-font-size: 12px;}
+.header_booking_engine .form-control:disabled{ border:1px solid #b79e78; border-radius:0px; 
+font-size: 14px;}
 .add-rooms-block{ background-color: #fff; position: absolute; padding: 1em; width: 18%;}
 .css-13cymwt-control{background: none !important;
 border: none;
@@ -55,18 +60,21 @@ box-shadow: none;
 border-width: 0 !important;}
 .header_booking_engine .btn{ 
         bottom: 0;
-    padding: 7px 15px;
+    padding: 7px 10px;
     margin-top: 2em;
-    border-radius: 4px;
-    border-radius: 4px !important;
-    background-color: #002d62;
-    border: 1px solid #000;
-    color: #fff;
+    border-radius: 0px;
+    border-radius: 0px !important;
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: #000;
+    font-size: 13px;
+}
+.booking-search-bar-btn-div.home-page-class {
+    bottom: 100px;
 }
 
 
-
-.react-datepicker__input-container .form-control{ width:120%;}
+.react-datepicker__input-container .form-control{ width:100%;}
 
 .rooms-child-outer-block {
 position: relative;
@@ -96,7 +104,7 @@ z-index: 9999; /* Ensure it's above everything */
 /* Toggle button styles */
 .booking-toggle-btn {
   padding: 5px;
-  background-color: #f5f5dc;
+  background-color: #fff;
   border: none;
   border-radius: 50%;
   display: flex;
@@ -120,18 +128,22 @@ z-index: 9999; /* Ensure it's above everything */
 .plus-min-style {
   background-color: #f0f0f0;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
-
-
+.react-datepicker__header h2{
+  font-family: inherit!important;
+}
+.form-group.plus-min-style span{
+  margin: 0 5px!important;
+}
 .header_booking_engine_container {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%) translateY(100%);
   width: 100%;
-  z-index: 1;
+  z-index: 999;
   transition: transform 0.5s ease, opacity 0.5s ease;
   opacity: 0;
   visibility: hidden;
@@ -163,9 +175,14 @@ z-index: 9999; /* Ensure it's above everything */
   overflow-y: auto;
 }
 .add-rooms-block .add-rooms-div .plus-min-style button {
-    padding: 0px;
-    height: 25px;
     width: 25px;
+    height: 25px;
+    padding: 0;
+    border: 1px solid #000;
+    font-size: 24px;
+    line-height: 0px;
+    margin: 0;
+    padding: 0;
 }
 .room-name-or-remove {
     display: flex;
@@ -174,6 +191,14 @@ z-index: 9999; /* Ensure it's above everything */
 }
 .add-rooms-div .row .col-6{
   padding:0;
+}
+.rooms-child-outer-block .showmoreT .yellow-btn.btn{
+  width: 100px;
+  background-color: #000;
+  color: #fff;
+  padding: 5px 10px;
+  text-align: center;
+  margin-top: 0rem;
 }
 .room-name-or-remove .rmv {
     outline: none;
@@ -189,5 +214,9 @@ z-index: 9999; /* Ensure it's above everything */
 .form-control#hotel-select{
       border-width: 1px !important;
     border-style: solid !important;
-    border-color: rgb(183, 158, 120) !important;
+    border-color: #fff !important;
+    box-shadow: none;
+}
+.header_booking_engine label{
+  color: #fff;
 }

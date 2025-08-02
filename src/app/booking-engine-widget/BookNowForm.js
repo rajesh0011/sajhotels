@@ -16,8 +16,9 @@ import useBook from "./useBook";
 import { useForm } from './FormContext';
 
 export default function BookNowForm() {
+   const [isFormOpen, setIsFormOpen] = useState(false); 
   const [isRoomMenuOpen, setIsRoomMenuOpen] = useState(false);
-  const { isFormOpen, toggleForm } = useForm();
+  // const { isFormOpen, toggleForm } = useForm();
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const pathname = usePathname();
   const [showPopupForm, setShowPopupForm] = useState(false);
@@ -29,53 +30,7 @@ const [guestInfo, setGuestInfo] = useState({ name: '', email: '', mobile: '' });
     handleIncrement, handleDecrement, addNewRow, handleRemove
   } = useBook();
 
-// ... rest of your code remains the same until the toggleBookingForm function
 
-const handleEnquirySubmit = async () => {
-  const { name, email, mobile } = guestInfo;
-
-  if (!name || !mobile) {
-    toast.error("Name and Mobile are required");
-    return;
-  }
- 
-  const payload = {
-    source_enquiry: selectedHotel.value === "jawai" ? "alivaa-jawai" : selectedHotel.value === "dalhousie" ? "alivaa-dalhousie" : "alivaa-lansdowne",    name: name,
-    phone: mobile,
-    message: ``,
-    checkin_date: formatDate(rangeStart),
-    checkout_date: formatDate(rangeEnd),
-    rooms: countroom.toString(),
-    adults: adult().toString(),
-    children: children().toString(),
-    web_source: "alivaahotels.com"
-  };
-
-  try {
-    const response = await fetch("https://demo.cinuniverse.com/alivaa/be-enquiry.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const data = await response.json();
-    console.log("Submitted enquiry data:", payload);
-    console.log("Server response:", data);
-
-    if (data.status === "success") {
-      toast.success(data.message || "Enquiry submitted successfully");
-      setShowPopupForm(false);
-      setGuestInfo({ name: '', email: '', mobile: '' }); // clear form
-    } else {
-      toast.error(data.message || "Failed to submit enquiry");
-    }
-  } catch (error) {
-    console.error("Error submitting enquiry:", error);
-    toast.error("Something went wrong. Please try again later.");
-  }
-};
 
   const hotelOptions = [
     {
@@ -84,42 +39,26 @@ const handleEnquirySubmit = async () => {
       isDisabled: true
     },
     {
-      value: 'gurugram1',
-      label: 'Alivaa Hotel, Gurugram',
-      slug: 'gurgaon-hotels',
-      url: 'https://bookings.alivaahotels.com/inst/#/home?propertyId=981NJ8TQ49ro3Z7RTrbLaPgGZCWk8ihVQvzMylYvu085aOhvZIjS2TE3NTc=&JDRN=Y&RoomID=184902,184903,185018,185019,184904,185017,185949'
+      value: 'malshej',
+      label: 'Saj By The Lake - Malshej',
+      slug: 'malshej-hotels',
+      url: 'https://bookings.zuper.in/inst/#home?propertyId=343NjUlcpttbLFIHsF0LY1B2NQ==&JDRN=Y'
     },
     {
-  value: 'gurugram2',
-  label: 'Hoften Hotel, Gurugram',
-  slug: 'gurugram-hotel',
-  url: 'https://bookings.alivaahotels.com/inst/#/home?propertyId=402NT4HhhBGbbpoRahFpDYw3nQ5NDM=&JDRN=Y&RoomID=210380,210381,210383,210384,210385'
+        value: 'pench',
+        label: 'Saj In The Forest - Pench',
+        slug: 'pench-hotels',
+        url: 'https://bookings.zuper.in/inst/#home?propertyId=342MjadT5OCBAgXx8g907IUxMTU=&JDRN=Y'
+      },
+      {
+        value: 'mahabaleshwar',
+        label: 'Saj On The Mountain, Mahabaleshwar',
+        slug: 'mahabaleshwar-hotels',
+        url: '#'
+      },
 
-},
-    {
-      value: 'mcleodganj',
-      label: 'Alivaa Hotel, Mcleodganj',
-      slug: 'mcleodganj',
-      url: 'https://alivaahotels.securedreservations.com/reservation?bID=6d7880d9-c05f-4be6-811f-eeb846d0c59d&cID=f1c6c3f5-04d5-4180-9895-7f3e3f6b240c&destination=id=185914d6-4ebc-48b5-b982-6e81e5eb35b0&type=2'
-    },
-    {
-      value: 'lansdowne',
-      label: 'Alivaa Hotel, Lansdowne',
-      slug: 'lansdowne',
-      url: ''
-    },
-    {
-      value: 'jawai',
-      label: 'Alivaa Hotel, Jawai',
-      slug: 'jawai',
-      url: ''
-    },
-    {
-  value: 'dalhousie',
-  label: 'The Hoften Blue Magnets, Dalhousie',
-  slug: 'dalhousie',
-  url: 'https://alivaahotels.securedreservations.com/reservation?bID=6d7880d9-c05f-4be6-811f-eeb846d0c59d&cID=f1c6c3f5-04d5-4180-9895-7f3e3f6b240c&destination=id=cee239fd-433d-4700-bd55-67795c3eca05&type=2'
-},
+
+   
   ];
 
   const checkInDatePickerRef = useRef(null);
@@ -180,42 +119,8 @@ const handleEnquirySubmit = async () => {
   let bookingUrl = selectedHotel.url;
   const checkIn = formatDate(rangeStart);
   const checkOut = formatDate(rangeEnd);
-  if (selectedHotel.value === 'jawai' || selectedHotel.value === 'lansdowne' ) {
-  setShowPopupForm(true); // show popup instead of opening URL
-  return;
-}
 
- else if (selectedHotel.value === 'gurugram2') {
-  bookingUrl += `&checkIn=${checkIn}&checkOut=${checkOut}&noofrooms=${countroom}`;
-  formRows.forEach((row, index) => {
-    bookingUrl += `&adult${index}=${row.count1}&child${index}=${row.count2}`;
-  });
-  bookingUrl += `&gsId=402NT4HhhBGbbpoRahFpDYw3nQ5NDM=&RoomID=210380,210381,210383,210384,210385&ap=1`;
-} else if (selectedHotel.value === 'gurugram1') {
-  bookingUrl += `&checkIn=${checkIn}&checkOut=${checkOut}&clientWidth=1280&noofrooms=${countroom}`;
-  formRows.forEach((row, index) => {
-    bookingUrl += `&adult${index}=${row.count1}&child${index}=${row.count2}`;
-  });
-  bookingUrl += `&gsId=981NJ8TQ49ro3Z7RTrbLaPgGZCWk8ihVQvzMylYvu085aOhvZIjS2TE3NTc=&RoomID=184902,184903,185018,185019,184904,185017,185949`;
-}
-else if (selectedHotel.value === 'dalhousie') {
-  const roomPropertyId = 'cee239fd-433d-4700-bd55-67795c3eca05';
 
-  let guestParams = [];
-
-  formRows.forEach((row, index) => {
-    const roomIndex = index + 1;
-    if (row.count1 > 0) guestParams.push(`ac${roomIndex}=${row.count1}`);
-    if (row.count2 > 0) guestParams.push(`cc${roomIndex}=${row.count2}`);
-  });
-
-  const guestString = `[${guestParams.join(',')}]`;
-
-  bookingUrl = `https://alivaahotels.securedreservations.com/reservation?bID=6d7880d9-c05f-4be6-811f-eeb846d0c59d&cID=f1c6c3f5-04d5-4180-9895-7f3e3f6b240c&destination=id=${roomPropertyId}&type=2&checkInDate=${checkIn}&checkOutDate=${checkOut}&guest=${encodeURIComponent(guestString)}&roomPropertyID=${roomPropertyId}`;
-
-  window.open(bookingUrl, "_blank");
-  return;
-}
 
   window.open(bookingUrl, "_blank");
 };
@@ -232,8 +137,6 @@ else if (selectedHotel.value === 'dalhousie') {
       <div className={`header_booking_engine_container ${isFormOpen ? "show" : ""} ${isHomePage ? 'home-page-class' : ''}`}>
         <div className="header_booking_engine">
           <div className="row justify-content-center">
-
-            {/* Hotel Select */}
             <div className="header-search-select-option col-12 col-md-3">
               <label htmlFor="hotel-select">Hotel/City</label>
               <Select
@@ -360,9 +263,6 @@ else if (selectedHotel.value === 'dalhousie') {
           {isFormOpen ? <X size={20} color="black" /> : <Search size={20} color="black" />}
         </button>
       </div>
-
-
-
     </>
   );
 }

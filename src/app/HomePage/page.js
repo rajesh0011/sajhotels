@@ -3,7 +3,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import TestimonialSection from "@/sliders/TestimonialSection";
-import { useState } from "react";
 import ExploreSaj from "@/sliders/ExploreSaj";
 import ExperiencesLove from "@/sliders/ExperiencesLove";
 import PackagesOffers from "@/components/PackagesOffers";
@@ -11,11 +10,15 @@ import StorySlider from "@/sliders/StorySlider";
 import HomeGallerySlider from "@/sliders/HomeGallerySlider";
 import NewsletterForm from "@/components/NewsletterForm";
 import SajBrandSlider from "@/sliders/SajBrandSlider";
-// import BookNowForm from "../booking-engine-widget/BookNowForm";
+
+
+import BookNowForm from "../booking-engine-widget/BookNowForm";
+import Header from "@/components/Header";
 
 export default function Page() {
   return (
     <>
+    <Header />
       <section className="hero-banner position-relative">
         <Image
           src="/img/banner-image.jpg"
@@ -24,11 +27,10 @@ export default function Page() {
           className="hero-banner-image w-100"
         />
 
-        {/* <div className="banner-overlay position-absolute bg-white bottom-10 start-50 translate-middle text-center text-white p-3 bg-dark bg-opacity-80 rounded-5">
-          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-           
-            </div>
-        </div> */}
+        <section className="booking-form-section">
+            <BookNowForm />
+        </section>
+        
       </section>
 
 

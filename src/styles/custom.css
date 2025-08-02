@@ -1213,10 +1213,10 @@ hotel page css */
 .home-page-class .header_booking_engine {
   bottom: 0px;
 }
-.home-page-class button {
+/* .home-page-class button {
   bottom: 3em;
   position: relative;
-}
+} */
 .hero-sec:before {
   position: absolute;
   content: "";
@@ -1297,7 +1297,7 @@ footer {
   bottom: 0;
 }
 .rmv {
-  margin-top: 46px;
+  margin-top: 1px;
   font-size: 12px;
   margin-left: 10px;
   width: 115px;

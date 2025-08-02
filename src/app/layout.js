@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${montserrat.variable} ${elsie.variable} antialiased`}>
         <AOSInitializer />
-        <Header />
+        
         <ImportBsJS />
         <main>{children}</main>
               <FooterPage />
